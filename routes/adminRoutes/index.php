@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\Verification\ChangeRequestController;
 use App\Http\Controllers\Admin\Verification\VerificationController;
 use App\Http\Controllers\Admin\Verification\VerifyChangeRequestController;
 use App\Http\Controllers\NCSStagingJobPostController;
+use App\Http\Controllers\NCSController;
+use App\Http\Controllers\NcsJobDispatchController;
 use App\Http\Livewire\Admin\Placement\Create;
 use Illuminate\Support\Facades\Route;
 use App\Jobs\NCSJobPost;
@@ -40,6 +42,15 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
     Route::get('/employee-news/unpublished', [JobsPostController::class, 'unpublished'])->name('unpublished.job');
     Route::get('/employee-news/{id}/view', [JobsPostController::class, 'viewJob'])->name('view.job');
     //replaced
+    //new Route for job post for NCS
+    Route::get('/employee-newsNcs', [JobsPostController::class, 'getJobsPostNCS'])->name('jobsPostNcs');
+    // Route::get('/employee-news/create-newsNcs', [JobsPostController::class, 'createJobsPostNcs'])->name('create.jobs.postNcs');
+    Route::get('/employee-news/create-newsNcs', [NcsJobDispatchController::class, 'show'])->name('create.jobs.postNcs');
+    Route::post('/submit-job-form', [NcsJobDispatchController::class, 'store'])->name('submitJobForm');
+
+
+
+
 
 
     //placment
@@ -138,6 +149,7 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
     // archive
     // Route::get('/archive', Archive::class)->name('admin.archive');
     Route::view('/archive', 'admin.archive')->name('admin.archive');
+    
 });
 
 // admin
@@ -148,6 +160,13 @@ Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.post
 
 //staging server
 Route::get('/admin/ncs-job/store', [NCSStagingJobPostController::class, 'handle'])->middleware(['auth:admin']);
+// Route::get('/admin/ncs-job/see', [NCSController::class, 'handle'])->middleware(['auth:admin']);
+
 // Route::post('/admin/ncs-job/post', [NCSStagingJobPostController::class, 'handle'])->middleware(['auth:admin']);
 
 // Route::post('/dispatch-job', 'JobController@dispatchJob')->name('dispatch-job');
+
+// Route::get('/job-form', [NcsJobDispatchController::class,'show'])->name('jobForm');
+// Route::get('/employee-news/create-newsNcs', [NcsJobDispatchController::class, 'show'])->name('create.jobs.postNcs');
+
+// Route::post('/submit-job-form',[])->name('submitJobForm');

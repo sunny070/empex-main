@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\NCSJobPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use phpseclib3\Crypt\TripleDES;
 use App\Models\NcsJobDispatch;
 
-class NCSStagingJobPostController extends Controller
+class NcsJobDispatchController extends Controller
 {
-    public $title, $description;
 
-    public function __construct($title, $description)
+    public function show()
     {
-        // dd(auth()->guard('admin')->user()?->role_id);
-        // if (auth()->guard('admin')->user()?->role_id != 1) {
+        // if (auth()->guard('admin')->user()->role_id != 1) {
         //     abort(401);
-        // }
+        //   }
 
-        //added
- 
+        return view('admin.createJobPostNcs');
+        // return view('admin.createJobPostNcs');
     }
-    public function handle(Request $request)
+    public function store(Request $request)
     {
-        $details = new NcsJobDispatch();
-        $details->JobReferenceID    = $request->JobReferenceID;
-        $details->JobTitle = $request->input('JobTitle');
+        $details = new NcsJobDispatch;
+        $details->JobReferenceID    = $request->input('JobReferenceID');
+        $details->JobTitle =          $request->input('JobTitle');
         $details->JobDescription          = $request->input('JobDescription');
         $details->SectorID          = $request->input('SectorID');
         $details->IndustryID          = $request->input('IndustryID');
@@ -46,7 +43,10 @@ class NCSStagingJobPostController extends Controller
         $details->ContactEmail          = $request->input('ContactEmail');
         $details->IsToDisplayContactInformation          = $request->input('IsToDisplayContactInformation');
         $details->IsToDisplayMobileOfEmployer          = $request->input('IsToDisplayMobileOfEmployer');
-        $details->Keyskills          = $request->input('Keyskills');
+        
+        $details->IsToDisplayMobileOfEmployer          = $request->input('IsToDisplayMobileOfEmployer');
+
+        $details->Keyskills          =     $request->input('Keyskills');
         $details->JobPostExpiryDate          = $request->input('JobPostExpiryDate');
         $details->UGQualificationID          = $request->input('UGQualificationID');
         $details->UGSpecializationID          = $request->input('UGSpecializationID');
@@ -56,18 +56,20 @@ class NCSStagingJobPostController extends Controller
         $details->PGSpecializationID          = $request->input('PGSpecializationID');
         $details->PGYearFrom          = $request->input('PGYearFrom');
         $details->PGYearTo          = $request->input('PGYearTo');
-
         $details->PHDQualificationID          = $request->input('PHDQualificationID');
         $details->PHDSpecializationID          = $request->input('PHDSpecializationID');
         $details->PHDYearFrom          = $request->input('PHDYearFrom');
         $details->PHDYearTo          = $request->input('PHDYearTo');
         $details->PostedForEmployer          = $request->input('PostedForEmployer');
         $details->JobLocations          = $request->input('JobLocations');
-
-        $details->ApplyJobUrl          = $request->input('ApplyJobUrl');
+        // $details->ApplyJobUrl          = $request->input('ApplyJobUrl');
         $details->FunctionalAreaID          = $request->input('FunctionalAreaID');
         $details->FunctionalRoleID          = $request->input('FunctionalRoleID');
         $details->save();
+        // dd($details);
+        // return redirect()->route('jobsPostNcs')->with('success', 'Category Successfully created');
+
+        // return $details;
 
 
         // if (env('APP_ENV') == 'local') {
@@ -91,25 +93,28 @@ class NCSStagingJobPostController extends Controller
 
         // return $ncsAuthUser['AuthenticateUserResult']['Cookie'];
 
+     
 
         if ($authResponse->ok()) {
+           
             $ncsAuthUser = json_decode($authResponse->body(), true);
-
+           
             // 
 
             // dd("sunny");
 
             $response =  Http::withHeaders([
 
-                'Cookie' => $ncsAuthUser['AuthenticateUserResult']['Cookie']
+                'Cookie' => $ncsAuthUser['AuthenticateUserResult']['Cookie'],
+                'Accept' => 'application/json'
 
             ])->post(
                 'https://spstaging.ncs.gov.in/_vti_bin/NCSPartners/NCSPServiceExternal.svc/PostNewJobs',
                 [
-                    "JobReferenceID" => $details->JobReferenceID ,
+                    "JobReferenceID" => $details->JobReferenceID,
                     "JobTitle" => $details->JobTitle,
                     "JobDescription" => $details->JobDescription,
-                    "SectorID" => $details->SectorID ,
+                    "SectorID" => $details->SectorID,
                     "IndustryID" => $details->IndustryID,
                     "MinExperienceYear" => $details->MinExperienceYear,
                     "MaxExperienceYear" => $details->MaxExperienceYear,
@@ -121,15 +126,15 @@ class NCSStagingJobPostController extends Controller
                     "MaxAge" => $details->MaxAge,
                     "GenderCode" => $details->GenderCode,
                     "NumberofOpenings" => $details->NumberofOpenings,
-                    "MinQualificationID" =>$details->MinQualificationID ,
+                    "MinQualificationID" => $details->MinQualificationID,
                     "ContactPersonName" => $details->ContactPersonName,
-                    "ContactMobile" =>$details->ContactMobile ,
+                    "ContactMobile" => $details->ContactMobile,
                     "ContactEmail" => $details->ContactEmail,
-                    "IsToDisplayContactInformation" => true,
-                    "IsToDisplayMobileOfEmployer" => true,
-                    "IsToDisplayEmailIdOfEmployer" => true,
-                    "Keyskills" => [["Skill" => "Sales"], ["Skill" => "Go to Market"]],
-                    "JobPostExpiryDate" =>$details->JobPostExpiryDate ,
+                    "IsToDisplayContactInformation" => $details->IsToDisplayContactInformation,
+                    "IsToDisplayMobileOfEmployer" => $details->IsToDisplayMobileOfEmployer,
+                    "IsToDisplayEmailIdOfEmployer" => $details->IsToDisplayMobileOfEmployer ,
+                    // "Keyskills" => [["Skill" => "Sales"], ["Skill" => "Go to Market"]],
+                    "JobPostExpiryDate" => $details->JobPostExpiryDate,
                     "UGQualificationID" => $details->UGQualificationID,
                     "UGSpecializationID" => $details->UGSpecializationID,
                     "UGYearFrom" => $details->UGYearFrom,
@@ -139,14 +144,14 @@ class NCSStagingJobPostController extends Controller
                     "PGYearFrom" => $details->PGYearFrom,
                     "PGYearTo" => $details->PGYearTo,
                     "PHDQualificationID" => $details->PHDQualificationID,
-                    "PHDSpecializationID" =>$details->PHDSpecializationID ,
+                    "PHDSpecializationID" => $details->PHDSpecializationID,
                     "PHDYearFrom" => $details->PHDYearFrom,
                     "PHDYearTo" => $details->PHDYearTo,
                     "PostedForEmployer" => $details->PostedForEmployer,
-                    "JobLocations" => [["CityID" => 66468], ["StateID" => 9]],
+                    // "JobLocations" => [["CityID" => 66468], ["StateID" => 9]],
                     "ApplyJobUrl" => "https://dev.abc.co.in:8090/jobs/wiseyatra-rdight-holiday-technologies-pvt-ltd-content-writer-jobs-for-freshers-in-new-delhi-4958?from=ncs",
                     "FunctionalAreaID" => $details->FunctionalAreaID,
-                    "FunctionalRoleID" =>$details->FunctionalRoleID 
+                    "FunctionalRoleID" => $details->FunctionalRoleID
                     //       
                 ]
             );
@@ -154,5 +159,4 @@ class NCSStagingJobPostController extends Controller
             return $response->body();
         }
     }
-    
 }

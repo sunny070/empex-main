@@ -259,4 +259,5 @@ class JobPost extends Component
     {
         return view('livewire.admin.job-post');
     }
+    
 }

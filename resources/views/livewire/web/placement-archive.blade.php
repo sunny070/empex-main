@@ -28,7 +28,7 @@
 
                     <div class="relative overflow-hidden transition-all max-h-0 duration-700" style=""
                         x-ref="container1" style="max-height: fit-content"
-                        x-bind:style="selected == {{$i}} ? 'max-height: ' + 310 + 'px' : ''">
+                        x-bind:style="selected == {{$i}} ? 'max-height: ' + 400 + 'px' : ''">
                         <ul stylde="list-style-type: circle;" classd="pl-10">
                             {{-- <li>January</li>
                             <li>February</li>

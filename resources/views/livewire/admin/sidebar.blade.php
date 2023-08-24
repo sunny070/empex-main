@@ -128,9 +128,17 @@
                         Employer
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ Route('jobsPost') }}" :active="request()->is('admin/employee-news*')"
+                    
+                    <x-jet-nav-link href="{{ Route('jobsPost') }}" :active="request()->routeIs('jobsPost')"
                         class="p-2 md:ml-4"> Employment News
                     </x-jet-nav-link>
+                    {{-- Added --}}
+                    <x-jet-nav-link href="{{ Route('jobsPostNcs') }}" :active="request()->routeIs('jobsPostNcs')"
+                        class="p-2 md:ml-4"> Employment NCS News
+                    </x-jet-nav-link>
+
+
+
                     <x-jet-nav-link href="{{ Route('admin.placement',['district'=>1]) }}"
                         :active="request()->route()->getName() == 'admin.placement'" class="p-2 md:ml-4">Placement
                     </x-jet-nav-link>

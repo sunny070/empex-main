@@ -304,6 +304,8 @@
             }
         }
     </style>
+    @bukStyles(true)
+    
     @livewireStyles
 </head>
 
@@ -370,6 +372,7 @@
   		document.getElementById(popoverID).classList.toggle("hidden");
   	}
     </script>
+    @bukScripts(true)
 </body>
 
 </html>

@@ -23,6 +23,16 @@ class JobsPostController extends Controller
     $unpublished = JobPost::where('published', 0)->count();
     return view('admin.jobPost', compact('jobs', 'unpublished'));
   }
+  public function getJobsPostNCS()
+  {
+    if (auth()->guard('admin')->user()->role_id != 1) {
+      abort(401);
+    }
+
+    // $jobs = JobPost::where('published', 1)->orderBy('created_at', 'desc')->paginate();
+    // $unpublished = JobPost::where('published', 0)->count();
+    return view('admin.jobPostNcs');
+  }
 
   public function createJobsPost()
   {
@@ -32,6 +42,16 @@ class JobsPostController extends Controller
 
     return view('admin.createJobPost');
   }
+  //added
+  public function createJobsPostNcs()
+  {
+    if (auth()->guard('admin')->user()->role_id != 1) {
+      abort(401);
+    }
+
+    return view('admin.createJobPostNcs');
+  }
+  
 
   public function editJob($id)
   {

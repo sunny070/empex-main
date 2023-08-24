@@ -1,22 +1,24 @@
 @extends('layouts.admin')
+
 @section('content')
     <div class="max-w-7xl mx-auto px-4 mb-10 mt-5">
         <div class="w-full flex justify-between">
             <div class="text-sm font-semibold ml-5">
-                Employment News
+                EmploymentNCS News
             </div>
             <div>
-                @if ($unpublished > 0)
-                    <a href="{{ route('unpublished.job') }}"
+                {{-- @if ($unpublished > 0) --}}
+                    {{-- <a href="{{ route('unpublished.job') }}"
                         class="bg-empex-yellow mr-3 text-black rounded px-4 py-1 text-base font-medium hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-600">
-                        ({{ $unpublished }}) unpublished jobs post
-                    </a>
-                @endif
+                        {{-- ({{ $unpublished }}) unpublished jobs post --}}
+                    {{-- </a>  --}}
+                {{-- @endif --}}
 
-                <a href="{{ route('create.jobs.post') }}"
+                <a href="{{ route('create.jobs.postNcs') }}" :active="request()->routeIs('jobsPostNcs')"
                     class="bg-empex-green text-white rounded px-4 py-1 text-base font-medium hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
-                    Add Empex
+                    Add NCS
                 </a>
+                
                 
             </div>
         </div>
@@ -54,39 +56,11 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @forelse($jobs as $job)
-                                        <tr class="hover:bg-gray-50">
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                {{ $job->title }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                {{ $job->organization_name }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                {{-- {{ $job->description }} --}}
-                                                {!!$job->description !!}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                {{ $job->no_of_post }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                {{ date('d-M-Y', strtotime($job->due_date_of_submission)) }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">
-                                                <a href="{{ route('edit.job', $job->id) }}"
-                                                    class="text-indigo-600 dark:text-indigo-500 hover:text-indigo-900 dark:hover:text-indigo-700">Edit</a>
-                                            </td>
-                                            <td>
-
-                                                @livewire('delete-job', ['id' => $job->id])
-                                            </td>
-                                        </tr>
-                                    @empty
+                                {{-- @empty --}}
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap" colspan="5">Jobs not found</td>
                                         </tr>
-                                    @endforelse
+                                    {{-- @endforelse --}}
                                 </tbody>
                             </table>
                         </div>
@@ -94,7 +68,7 @@
                 </div>
 
                 <div class="py-2">
-                    {{ $jobs->onEachSide(1)->links() }}
+                    {{-- {{ $jobs->onEachSide(1)->links() }} --}}
                 </div>
             </div>
         </div>
