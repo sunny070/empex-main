@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\JobsPostController;
 use App\Http\Controllers\Api\AddressChangeController;
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\ApiJobFetchController;
@@ -134,4 +135,8 @@ Route::post('/doc-employment-card', [DigilockerController::class, 'document']);
 // Route::post('/fetch-data', 'ApiJobFetchController@fetchDataFromApi');
 
 
+
 Route::get('/fetch-data-from-api', [ApiJobFetchController::class, 'authenticateUser']);
+//Added
+// Route::post('jobpostNcs/to/empex',[JobsPostController::class,'submitNCS']);
+// Route::get('/fetchJobs', [ApiJobFetchController::class, 'fetchJobs']);

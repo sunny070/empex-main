@@ -10,6 +10,14 @@ use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+//added
+use App\Models\JobPost as ModelsJobPost;
+use App\Models\JobFile;
+use Illuminate\Support\Facades\Auth;
+use App\Models\JobNco;
+
+
+
 
 class JobsPostController extends Controller
 {
@@ -42,7 +50,7 @@ class JobsPostController extends Controller
 
     return view('admin.createJobPost');
   }
-  //added
+  //addedasdasdasdasdasdasdasdasdasdasdasdasdasd
   public function createJobsPostNcs()
   {
     if (auth()->guard('admin')->user()->role_id != 1) {
@@ -91,4 +99,13 @@ class JobsPostController extends Controller
 
     return view('admin.viewJobPost', compact('id'));
   }
+
+  //added
+ 
+
+  // public function JobPostToNcs()
+  // {
+  //   return ['name' => 'synny'];
+  // }
 }
+

@@ -8,26 +8,43 @@ use Illuminate\Database\Eloquent\Model;
 class NcsJobDispatch extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'JobReferenceID', 
-        'JobTitle', 
-        'JobDescription', 'SectorID', 'IndustryID',
-        'MinExperienceYear', 'MaxExperienceYear', 'MinExpectedSalary', 'MaxExpectedSalary',
-        'SalaryType', 'JobNatureCode', 'MinAge', 'MaxAge', 'GenderCode', 'NumberofOpenings',
-        'MinQualificationID', 'ContactPersonName', 'ContactMobile', 'ContactEmail',
-        'IsToDisplayContactInformation', 'IsToDisplayMobileOfEmployer', 'Keyskills',
-        'JobPostExpiryDate', 'UGQualificationID', 'UGSpecializationID', 'UGYearFrom', 'UGYearTo',
-        'PGQualificationID', 'PGSpecializationID', 'PGYearFrom', 'PGYearTo',
-        'PHDQualificationID', 'PHDSpecializationID', 'PHDYearFrom', 'PHDYearTo',
-        'PostedForEmployer', 'JobLocations', 'FunctionalAreaID', 'FunctionalRoleID',
-        // Add other fields here
-    ];
-    public $timestamps = false;
-    public $id = false;
+    protected $table = 'ncs_job_dispatches';
 
-    protected $casts = [
-        'Keyskills' => 'array',
-        'JobLocations'=> 'array'
-        // other attributes...
+    protected $fillable = [
+        'JobReferenceID',
+        'JobTitle',
+        'SectorID',
+        'IndustryID',
+        'JobDescription',
+        'MinExperienceYear',
+        'MaxExperienceYear',
+        'MinExpectedSalary',
+        'MaxExpectedSalary',
+        'JobNatureCode',
+        'NumberofOpenings',
+        'MinQualificationID',
+        'ContactPersonName',
+        'ContactMobile',
+        'KeySkills',
     ];
+
+    public function sector()
+    {
+        return $this->belongsTo(SectorNcs::class, 'SectorID');
+    }
+
+    public function industry()
+    {
+        return $this->belongsTo(IndustryNcs::class, 'IndustryID');
+    }
+
+    public function jobNature()
+    {
+        return $this->belongsTo(JobNatureCodeNcs::class, 'JobNatureCode');
+    }
+
+    public function minQualification()
+    {
+        return $this->belongsTo(MinQualificationNcs::class, 'MinQualificationID');
+    }
 }

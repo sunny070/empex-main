@@ -36,5 +36,17 @@ class DatabaseSeeder extends Seeder
      $this->call(NcoGroupsTableSeeder::class);
      $this->call(NcoFamiliesTableSeeder::class);
      $this->call(NcoDetailsTableSeeder::class);
+
+     $this->call(SectorNcsSeeder::class);
+     $this->call(IndustryNcsSeeder::class);
+     $this->call(JobNatureCodeNcsSeeder::class);
+     $this->call(MinQualificationNcsSeeder::class);
+
+
+
+
+
+
+
   }
 }

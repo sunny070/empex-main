@@ -233,10 +233,15 @@ class JobPost extends Component
 
         //post job to ncs portal
         //0908
-        NCSJobPost::dispatch($this->title,$this->description)->delay(5);
+        // NCSJobPost::dispatch($this->title,$this->description)->delay(5);
 
         return redirect()->route('jobsPost');
     }
+
+
+   
+
+
 
     function formatBytes($size, $precision = 1)
     {
