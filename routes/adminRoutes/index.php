@@ -45,8 +45,10 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
     //new Route for job post for NCS
     Route::get('/employee-newsNcs', [JobsPostController::class, 'getJobsPostNCS'])->name('jobsPostNcs');
     // Route::get('/employee-news/create-newsNcs', [JobsPostController::class, 'createJobsPostNcs'])->name('create.jobs.postNcs');
-    Route::get('/employee-news/create-newsNcs', [NcsJobDispatchController::class, 'show'])->name('create.jobs.postNcs');
-    Route::post('/submit-job-form', [NcsJobDispatchController::class, 'store'])->name('submitJobForm');
+    Route::get('/employee-news/create-newsNcs', [NcsJobDispatchController::class, 'createJobsPost'])->name('create.jobs.postNcs');
+    Route::post('/submit-job-form', [NcsJobDispatchController::class, 'show'])->name('submitJobForm');
+    // Route::post('jobpostNcs/to/empex',[NcsJobDispatchController::class,'submitNCS']);
+
 
 
 
@@ -149,6 +151,7 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
     // archive
     // Route::get('/archive', Archive::class)->name('admin.archive');
     Route::view('/archive', 'admin.archive')->name('admin.archive');
+    // Route::post('/jobpostNcs/to/empex',[JobsPostController::class,'submitNCS']);
     
 });
 
@@ -160,6 +163,9 @@ Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.post
 
 //staging server
 Route::get('/admin/ncs-job/store', [NCSStagingJobPostController::class, 'handle'])->middleware(['auth:admin']);
+// Route::post('admin/jobpostNcs/to/empex',[JobsPostController::class,'submitNCS'])->middleware(['auth:admin']);
+
+
 // Route::get('/admin/ncs-job/see', [NCSController::class, 'handle'])->middleware(['auth:admin']);
 
 // Route::post('/admin/ncs-job/post', [NCSStagingJobPostController::class, 'handle'])->middleware(['auth:admin']);

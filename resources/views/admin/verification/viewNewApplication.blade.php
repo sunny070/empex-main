@@ -312,7 +312,7 @@
 
             <div class="flex">
                 <div class="m-auto">
-                    <button @click="verifyDialog = true"
+                    <button @click="verifyDialog = true" 
                         class="bg-green-600 hover:bg-green-500 text-white font-semibold hover:text-white py-2 px-4 rounded">
                         Verify
                     </button>
