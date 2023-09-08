@@ -16,16 +16,16 @@ class NcsJobDispatch extends Model
         'SectorID',
         'IndustryID',
         'JobDescription',
-        'MinExperienceYear',
-        'MaxExperienceYear',
-        'MinExpectedSalary',
-        'MaxExpectedSalary',
         'JobNatureCode',
         'NumberofOpenings',
         'MinQualificationID',
         'ContactPersonName',
         'ContactMobile',
         'KeySkills',
+        'JobPostExpiryDate',
+        'PostedForEmployer',
+        'state_id',
+        'district_id'
     ];
 
     public function sector()
@@ -47,4 +47,12 @@ class NcsJobDispatch extends Model
     {
         return $this->belongsTo(MinQualificationNcs::class, 'MinQualificationID');
     }
+    public function district()
+    {
+    return $this->belongsTo(District::class);
+    }
+    // public function state()
+    // {
+    // return $this->belongsTo(State::class);
+    // }
 }

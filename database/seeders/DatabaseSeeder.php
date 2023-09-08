@@ -42,6 +42,10 @@ class DatabaseSeeder extends Seeder
      $this->call(JobNatureCodeNcsSeeder::class);
      $this->call(MinQualificationNcsSeeder::class);
 
+    //  $this->call(StateNcsSeeder::class);
+    //  $this->call(CityNcsSeeder::class);
+
+
 
 
 

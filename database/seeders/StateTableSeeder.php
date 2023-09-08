@@ -20,6 +20,7 @@ class StateTableSeeder extends Seeder
         'name' => 'Mizoram',
         'ncs_state_id' => '15',
       ],
+      
     ];
 
     foreach ($states as $state) {

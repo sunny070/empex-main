@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectorNcsTable extends Migration
+class CreateCityNcsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateSectorNcsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sector_ncs', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('name', 100);
+        Schema::create('city_ncs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('state_ncs_id')->constrained('state_ncs');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateSectorNcsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sector_ncs');
+        Schema::dropIfExists('city_ncs');
     }
 }

@@ -1601,6 +1601,9 @@ select {
 .w-36 {
 	width: 9rem;
 }
+.w-\[200px\] {
+	width: 200px;
+}
 .w-3\/12 {
 	width: 25%;
 }
@@ -1794,6 +1797,9 @@ select {
 .justify-between {
 	justify-content: space-between;
 }
+.justify-evenly {
+	justify-content: space-evenly;
+}
 .gap-6 {
 	gap: 1.5rem;
 }
@@ -1878,6 +1884,9 @@ select {
 }
 .overflow-y-hidden {
 	overflow-y: hidden;
+}
+.overflow-y-scroll {
+	overflow-y: scroll;
 }
 .truncate {
 	overflow: hidden;
@@ -2131,10 +2140,6 @@ select {
 .bg-green-50 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(236, 253, 245, var(--tw-bg-opacity));
-}
-.bg-blue-500 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
 }
 .bg-\[\#fdf9ed\] {
 	--tw-bg-opacity: 1;
@@ -2770,10 +2775,6 @@ select {
 .hover\:bg-yellow-400:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(251, 191, 36, var(--tw-bg-opacity));
-}
-.hover\:bg-blue-700:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
 }
 .hover\:bg-green-200:hover {
 	--tw-bg-opacity: 1;
