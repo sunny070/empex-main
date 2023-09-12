@@ -15,7 +15,7 @@ class SectorNcsSeeder extends Seeder
     public function run()
     {
         $sectors = [
-            ['name' => 'Others'],
+            
             ['name' => 'Private'],
             ['name' => 'Central Government'],
             ['name' => 'State Government'],

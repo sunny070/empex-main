@@ -1,6 +1,7 @@
 <div>
   <div class="container">
     <h1>Create Job</h1>
+    
     {{-- <form action="{{ route('submitJobForm') }}" method="POST">
       @csrf --}}
       <div class="flex justify-evenly">
@@ -9,8 +10,8 @@
             JobReference ID
           </label>
           <input wire:model='JobReferenceID' class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="JobReferenceID" required>
-          @error('category')
-          {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+          @error('JobReferenceID')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror
         </div>
 
@@ -19,8 +20,8 @@
             Job Title
           </label>
           <input wire:model='JobTitle' class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="JobTitle" required>
-          @error('category')
-          {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+          @error('JobTitle')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror
         </div>
       </div>
@@ -29,42 +30,42 @@
         <label class="block font-medium text-sm text-gray-700" for="JobDescription">Description*</label>
         <textarea id="JobDescription" wire:model.debounce.9999999ms="JobDescription" wire:key="JobDescription"
           placeholder="JobDescription"></textarea>
-        {{-- @error('description')
+        @error('JobDescription')
         <p class="text-red-500 text-xs italic">{{ $message }}</p>
-        @enderror --}}
+        @enderror
       </div>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      {{-- <div class="flex justify-evenly">
         <div class="w-full relative">
-          <select wire:model.lazy='State' class="input" id="State">
+          <label class="tracking-wide text-gray-500 text-xs" for="SectorID">
+          State*
+          </label>
+          <select wire:model.lazy='State' class="w-full p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" id="State">
             <option value="">Select State</option>
             @foreach ($States as $state)
             <option value="{{ $state->id }}">{{ $state->name }}</option>
             @endforeach
           </select>
-          <label class="tracking-wide text-gray-500 text-xs label-select2">
-            State*
-          </label>
-          @error('State')
+          @error('States')
           <p class="text-empex-red text-xs italic">{{ $message }}</p>
           @enderror
         </div>
 
         <div class="w-full relative">
-          <select wire:model.lazy='District' class="input" id="District">
+          <label class="tracking-wide text-gray-500 text-xs" for="District">
+            District*
+          </label>
+          <select wire:model.lazy='District' class="w-full p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600 id=" id="District">
             <option value="">Select District</option>
             @foreach ($Districts as $district)
             <option value="{{ $district->id }}">{{ $district->name }}</option>
             @endforeach
           </select>
-          <label class="tracking-wide text-gray-500 text-xs label-select2" for="District">
-            District*
-          </label>
-          @error('District')
+          @error('Districts')
           <p class="text-empex-red text-xs italic">{{ $message }}</p>
           @enderror
         </div> 
-
+      </div> --}}
 
 
       {{-- <label for="JobReferenceID">Job Reference ID</label>
@@ -94,8 +95,8 @@
           <option value="{{ $sector->id }}"> {{ $sector->name ?? "" }}</option>
           @endforeach
         </select>
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('SectorID')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
 
@@ -111,8 +112,8 @@
           <option value="{{ $industry->id }}"> {{ $industry->name?? "" }}</option>
           @endforeach
         </select>
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('IndustryID')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
       <div class="w-full relative">
@@ -122,13 +123,13 @@
         <select id="JobNatureCode" wire:model='JobNatureCode'
           class="w-full p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600"
           id="JobNatureCode">
-          <option hidden value="">Select Industry</option>
+          <option hidden value="">Select Job Nature</option>
           @foreach ($jobNatures as $jobNature)
           <option value="{{ $jobNature->id }}"> {{ $jobNature->code?? "" }}</option>
           @endforeach
         </select>
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('JobNatureCode')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
 
@@ -147,8 +148,8 @@
           PostedForEmployer 
         </label>
         <input wire:model='PostedForEmployer'  class="w-full p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="PostedForEmployer" required>
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('PostedForEmployer')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
 
@@ -166,8 +167,8 @@
           <option value="{{ $minqualification->id }}"> {{ $minqualification->name?? "" }}</option>
           @endforeach
         </select>
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('MinQualificationID')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
 
@@ -187,15 +188,15 @@
         @enderror
       </div> --}}
 
-      <div class="flex justify-evenly pt-5">
+      <div class="w-[400px] flex justify-evenly pt-5">
       <div class="w-full relative">
         <label class="tracking-wide text-gray-500 text-xs" for="ContactPersonName">
           Contact Person Name
         </label>
         <input wire:model='ContactPersonName'  class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="ContactPersonName" required>
       
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('ContactPersonName')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
 
@@ -205,21 +206,25 @@
         </label>
         <input wire:model='ContactMobile' class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="ContactMobile" required>
       
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('ContactMobile')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
     </div>
       
-    <div class="flex justify-evenly pt-5">
+    <div class="w-[400px] flex justify-evenly pt-5">
     <div class="w-full relative">
-        <label class="tracking-wide text-gray-500 text-xs" for="KeySkills">
+        {{-- <label class="tracking-wide text-gray-500 text-xs" for="KeySkills">
           Key Skills
         </label>
-        <input wire:model='KeySkills' class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="KeySkills" required>
-      
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        <input wire:model='KeySkills' class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="text" name="KeySkills" required> --}}
+        <label for="skill1">Skill 1:</label>
+        <input type="text" id="skill1" wire:model="KeySkills.0">
+    
+        <label for="skill2">Skill 2:</label>
+        <input type="text" id="skill2" wire:model="KeySkills.1">
+        @error('KeySkills')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
       
@@ -229,8 +234,8 @@
         </label>
         <input wire:model='JobPostExpiryDate' class="w-[200px] p-2 rounded input border-gray-400 text-base text-gray-600 focus:text-empex-green focus:border-green-600 focus:outline-none focus:ring-green-600" type="date" name="JobPostExpiryDate" required>
       
-        @error('category')
-        {{-- <p class="text-red-500 text-xs italic">{{ $message }}</p> --}}
+        @error('JobPostExpiryDate')
+        <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
     </div>

@@ -45,7 +45,7 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
     //new Route for job post for NCS
     Route::get('/employee-newsNcs', [JobsPostController::class, 'getJobsPostNCS'])->name('jobsPostNcs');
     // Route::get('/employee-news/create-newsNcs', [JobsPostController::class, 'createJobsPostNcs'])->name('create.jobs.postNcs');
-    Route::get('/employee-news/create-newsNcs', [NcsJobDispatchController::class, 'createJobsPost'])->name('create.jobs.postNcs');
+    Route::get('/employee-news/create-newsNcs', [NcsJobDispatchController::class, 'create'])->name('create.jobs.postNcs');
     Route::post('/submit-job-form', [NcsJobDispatchController::class, 'show'])->name('submitJobForm');
     // Route::post('jobpostNcs/to/empex',[NcsJobDispatchController::class,'submitNCS']);
 

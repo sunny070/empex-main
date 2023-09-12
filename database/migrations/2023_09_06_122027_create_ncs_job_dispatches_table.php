@@ -25,11 +25,11 @@ class CreateNcsJobDispatchesTable extends Migration
             $table->foreignId('MinQualificationID')->constrained('min_qualification_ncs');
             $table->string('ContactPersonName');
             $table->string('ContactMobile');
-            $table->string('KeySkills');
+            $table->json('KeySkills');
             $table->dateTime('JobPostExpiryDate');
             $table->string('PostedForEmployer'); 
-            $table->foreignId('state_id')->nullable();
-            $table->foreignId('district_id');//added
+            // $table->foreignId('state_id')->nullable();
+            // $table->foreignId('district_id');//added
             // $table->foreignId('StateID')->constrained('state_ncs')->nullable();
             // $table->foreignId('CityID')->constrained('city_ncs')->nullable();
             // $table->integer('MinExperienceYear')->nullable();
